@@ -17,18 +17,14 @@ import {
 } from "mdb-react-ui-kit";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addtocart, increament, decreament, removeFromCart } from "../feature/cartSlice";
+import { addtocart, increament,decreament ,removeFromCart} from "../feature/cartSlice";
 
 export default function Cart() {
-  const { cart, quantity, totalPrice, totalQuantity } = useSelector(
+  const { item,cart,quantity,totalPrice, totalQuantity } = useSelector(
     (state) => state.allcart
-  );
-
-  const dispatch = useDispatch();
-
-  // Calculate shipping charge
+  ); 
   const shippingCharge = cart.length > 0 ? 5 : 0;
-
+const dispatch = useDispatch()
   return (
     <section className="h-100 gradient-custom">
       <MDBContainer className="py-5 h-100">
@@ -41,7 +37,7 @@ export default function Cart() {
                 </MDBTypography>
               </MDBCardHeader>
               {cart.map((val) => (
-                <MDBCardBody key={val.id}> {/* Added key prop */}
+                <MDBCardBody>
                   <MDBRow>
                     <MDBCol lg="3" md="12" className="mb-4 mb-lg-0">
                       <MDBRipple
@@ -49,7 +45,7 @@ export default function Cart() {
                         rippleColor="light"
                         className="bg-image rounded hover-zoom hover-overlay"
                       >
-                        <img src={val.images[0]} className="w-100" alt="Product" />
+                        <img src={val.images[0]} className="w-100" />
                         <a href="#!">
                           <div
                             className="mask"
@@ -66,13 +62,19 @@ export default function Cart() {
                         <strong>{val.title}</strong>
                       </p>
 
-                      <MDBBtn title="Remove Item" onClick={() => dispatch(removeFromCart(val))} className="px-4 me-1">
-                        <MDBIcon fas icon="trash" />
-                      </MDBBtn>
+                      
+                                                  <MDBBtn title="Remove Item" onClick={()=>dispatch(removeFromCart(val))} className="px-4 me-1" ><MDBIcon fas icon="trash "  /></MDBBtn>
+
+                          
+                    
+                      
                     </MDBCol>
                     <MDBCol lg="4" md="6" className="mb-4 mb-lg-0">
-                      <div className="d-flex mb-4" style={{ maxWidth: "300px" }}>
-                        <MDBBtn onClick={() => dispatch(decreament(val))} className="px-3 me-2">
+                      <div
+                        className="d-flex mb-4"
+                        style={{ maxWidth: "300px" }}
+                      >
+                        <MDBBtn onClick={()=>dispatch(decreament(val))} className="px-3 me-2">
                           <MDBIcon fas icon="minus" />
                         </MDBBtn>
 
@@ -82,7 +84,7 @@ export default function Cart() {
                           label="Quantity"
                         />
 
-                        <MDBBtn onClick={() => dispatch(increament(val))} className="px-3 ms-2">
+                        <MDBBtn onClick={()=>dispatch(increament(val))} className="px-3 ms-2">
                           <MDBIcon fas icon="plus" />
                         </MDBBtn>
                       </div>
@@ -103,7 +105,7 @@ export default function Cart() {
                 <p>
                   <strong>Expected shipping delivery</strong>
                 </p>
-                <p className="mb-0">12.10.2020 - 14.10.2020</p>
+                <p className="mb-0">12.5.2024 - 14.5.2024</p>
               </MDBCardBody>
             </MDBCard>
 
@@ -112,7 +114,30 @@ export default function Cart() {
                 <p>
                   <strong>We accept</strong>
                 </p>
-                {/* CardImages for payment methods */}
+                <MDBCardImage
+                  className="me-2"
+                  width="45px"
+                  src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
+                  alt="Visa"
+                />
+                <MDBCardImage
+                  className="me-2"
+                  width="45px"
+                  src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/amex.svg"
+                  alt="American Express"
+                />
+                <MDBCardImage
+                  className="me-2"
+                  width="45px"
+                  src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
+                  alt="Mastercard"
+                />
+                <MDBCardImage
+                  className="me-2"
+                  width="45px"
+                  src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce/includes/gateways/paypal/assets/images/paypal.png"
+                  alt="PayPal acceptance mark"
+                />
               </MDBCardBody>
             </MDBCard>
           </MDBCol>
@@ -126,19 +151,20 @@ export default function Cart() {
               <MDBCardBody>
                 <MDBListGroup flush>
                   <MDBListGroupItem className="d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-                    Total Products
+                    Total Products 
+
                     <span>{totalQuantity}</span>
                   </MDBListGroupItem>
                   <MDBListGroupItem className="d-flex justify-content-between align-items-center px-0">
                     Shipping
-                    <span>$ {shippingCharge}</span> {/* Render shipping charge based on cart length */}
+                    <span>$ {shippingCharge}</span>
                   </MDBListGroupItem>
                   <MDBListGroupItem className="d-flex justify-content-between align-items-center border-0 px-0 mb-3">
                     <div>
                       <strong>Total amount</strong>
                     </div>
                     <span>
-                      <strong>$ {totalPrice + shippingCharge}</strong>
+                      <strong>$ {totalPrice+shippingCharge}</strong>
                     </span>
                   </MDBListGroupItem>
                 </MDBListGroup>
