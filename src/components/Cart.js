@@ -22,10 +22,8 @@ import { addtocart, increament,decreament ,removeFromCart} from "../feature/cart
 export default function Cart() {
   const { item,cart,quantity,totalPrice, totalQuantity } = useSelector(
     (state) => state.allcart
-  );
-useEffect(()=>{
-  addtocart();
-},[cart])
+  ); 
+
 const dispatch = useDispatch()
   return (
     <section className="h-100 gradient-custom">
