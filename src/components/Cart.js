@@ -23,7 +23,7 @@ export default function Cart() {
   const { item,cart,quantity,totalPrice, totalQuantity } = useSelector(
     (state) => state.allcart
   ); 
-  const shippingCharge = cart.length > 0 ? 5 : 0;
+  const shippingCharge = totalQuantity > 0 ? 5 : 0;
 const dispatch = useDispatch()
   return (
     <section className="h-100 gradient-custom">
