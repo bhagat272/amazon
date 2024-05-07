@@ -14,14 +14,15 @@ import {
 import { Products } from "./Products";
 import { useSelector, useDispatch } from "react-redux";
 import { addtocart } from "../feature/cartSlice";
-
+ 
 const Card = () => {
   const items = useSelector((state) => state.allcart.items);
   const dispatch = useDispatch();
 
   return (
     <div>
-      <MDBContainer className="mt-4">
+      
+      <MDBContainer className="cardproduct mt-4">
         <MDBRow className="d-flex align-items-stretch">
           {" "}
           {/* Added this class */}

@@ -13,7 +13,7 @@ export default function Navbar() {
   const {/*cart,*/totalQuantity} = useSelector((state)=>state.allcart)
   return (
     <>
-      <MDBNavbar light bgColor="warning">
+      <MDBNavbar light bgColor="warning" style={{position:"fixed",width:'100%',top:'0',zIndex:"1000"}}>
         <MDBContainer>
           <MDBNavbarBrand href="/">
             <MDBIcon fab icon="amazon" style={{ fontSize: "3rem" }} />
